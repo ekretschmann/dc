@@ -1,58 +1,130 @@
-<div class="container" data-ng-controller="HeaderController">
-	<div class="navbar-header">
-		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a href="/#!/" class="navbar-brand">dc</a>
-	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle">
-					<span data-ng-bind="item.title"></span>
-					<b class="caret"></b>
-				</a>
-				<ul ng-switch-when="dropdown" class="dropdown-menu">
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
-						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
-					</li>
-				</ul>
-				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Sign Up</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Sign In</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
-					</li>
-					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
-					</li>
-					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="/auth/signout">Signout</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
+<!--<div class="container" data-ng-controller="HeaderController">-->
+
+
+<div ng-controller="HeaderController as ctrl">
+
+    <md-toolbar class="md-menu-toolbar">
+        <h2 class="md-toolbar-tools" ng-click="ctrl.home()">MM Data Centre</h2>
+        <md-menu-bar ng-if="!ctrl.authentication.user">
+            <!--<md-menu ng-if="!ctrl.authentication.user">-->
+            <button ng-click="ctrl.signIn('SignIn', $event)">
+                Sign in
+            </button>
+
+
+            <!--</md-menu>-->
+
+
+            <!--<md-menu ng-if="!ctrl.authentication.user">-->
+            <button ng-click="ctrl.signIn('SignUp', $event)">
+                Sign Up
+            </button>
+
+
+
+            <!--</md-menu>-->
+
+        </md-menu-bar>
+
+
+        <md-menu-bar ng-if="ctrl.authentication.user">
+            <md-menu>
+
+
+                <button ng-click="$mdOpenMenu()">
+                    Buses
+                </button>
+                <md-menu-content>
+                    <!--<md-menu-item>-->
+                    <!--<md-button ng-click="ctrl.sampleAction('share', $event)">-->
+                    <!--Busstops-->
+                    <!--</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-divider></md-menu-divider>-->
+                    <md-menu-item>
+                        <md-menu>
+                            <md-button ng-click="$mdOpenMenu()">Busstops</md-button>
+                            <md-menu-content>
+                                <md-menu-item>
+                                    <md-button ng-click="ctrl.sampleAction('New Document', $event)">View
+                                    </md-button>
+                                </md-menu-item>
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Spreadsheet</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Presentation</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Form</md-button></md-menu-item>-->
+                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Drawing</md-button></md-menu-item>-->
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+            <button ng-click="ctrl.signOut('SignOut', $event)">
+                Sign Out
+            </button>
+        </md-menu-bar>
+
+    </md-toolbar>
+
+
+    <!--<md-toolbar class="md-menu-toolbar">-->
+
+
+    <!--<md-menu-bar>-->
+    <!--&lt;!&ndash;<h2 class="md-toolbar-tools">MM Data Centre</h2>&ndash;&gt;-->
+
+    <!--<div layout="row">-->
+    <!--&lt;!&ndash;<md-menu >&ndash;&gt;-->
+    <!--&lt;!&ndash;<button >&ndash;&gt;-->
+    <!--<div class="mm-data-centre-icon col-xs-11">MM Data Centre</div>-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu>&ndash;&gt;-->
+
+
+    <!--</md-menu-item>-->
+    <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button ng-click="ctrl.sampleAction('Open', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;Open...&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<span class="md-alt-text"> {{ 'M-O' | keyboardShortcut }}</span>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button disabled="disabled" ng-click="ctrl.sampleAction('Rename', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;Rename&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu-divider></md-menu-divider>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button ng-click="ctrl.sampleAction('Print', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;Print&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<span class="md-alt-text">{{ 'M-P' | keyboardShortcut }}</span>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu-item>&ndash;&gt;-->
+    <!--</md-menu-content>-->
+    <!--</md-menu>-->
+
+    <!--<md-menu ng-if="ctrl.authentication.user">-->
+    <!--<button ng-click="$mdOpenMenu()">-->
+    <!--{{ctrl.authentication.user.displayName}}-->
+    <!--</button>-->
+    <!--<md-menu-content>-->
+    <!--<md-menu-item>-->
+    <!--<md-button ng-click="ctrl.signOut('Signout', $event)">Sign Out</md-button>-->
+    <!--</md-menu-item>-->
+    <!--</md-menu-content>-->
+    <!--&lt;!&ndash;<md-menu-content>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Sign Out</md-button></md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-menu-content>&ndash;&gt;-->
+
+    <!--</md-menu>-->
+
+
+    <!--</div>-->
+    <!--</md-menu-bar>-->
+
+
+    <!--</md-toolbar>-->
+
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/dc-dev',
+	db: 'mongodb://localhost/motionmap-dev',
 	app: {
 		title: 'dc - Development Environment'
 	},
