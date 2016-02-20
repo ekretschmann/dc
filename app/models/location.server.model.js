@@ -21,6 +21,10 @@ var LocationSchema = new Schema({
 		default: 'unknown',
 		trim: true
 	},
+	labels: [{
+		type: String,
+		default: []
+	}],
 	lat: {
 		type: Number,
 		default: 0

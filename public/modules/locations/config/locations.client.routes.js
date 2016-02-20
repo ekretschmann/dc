@@ -28,6 +28,10 @@ angular.module('locations').config(['$stateProvider',
             state('editBusstop', {
                 url: '/busstops/:locationId/edit',
                 templateUrl: 'modules/locations/views/edit-busstop.client.view.html'
+            }).
+            state('createBusstop', {
+                url: '/busstops/create',
+                templateUrl: 'modules/locations/views/create-busstop.client.view.html'
             });
     }
 ]);

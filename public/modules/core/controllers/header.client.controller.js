@@ -16,6 +16,10 @@ angular.module('core').controller('HeaderController', function HeaderController(
 			$location.path('/busstops');
 		}
 
+		if (name === 'AddBusstop') {
+			$location.path('/busstops/create');
+		}
+
 		//$mdDialog.show($mdDialog.alert()
 		//		.title(name)
 		//		.textContent('You triggered the "' + name + '" action')

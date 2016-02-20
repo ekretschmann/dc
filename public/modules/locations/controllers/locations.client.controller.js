@@ -5,22 +5,49 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 	function($scope, $stateParams, $location, Authentication, Locations) {
 		$scope.authentication = Authentication;
 
+		//$scope.lines = [];
+
+		$scope.newLine = '';
 		// Create new Location
-		$scope.create = function() {
+		$scope.newBusstop = function() {
 			// Create new Location object
-			var location = new Locations ({
-				name: this.name
+			$scope.location = new Locations ({
+				type: 'busstop',
+				name: 'unknown',
+				lat: 0,
+				lng: 0,
+				info: []
 			});
 
-			// Redirect after save
-			location.$save(function(response) {
-				$location.path('locations/' + response._id);
 
-				// Clear form fields
-				$scope.name = '';
+		};
+
+		$scope.create = function() {
+
+			$scope.location.$save(function(response) {
+				$location.path('/busstops');
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+		};
+
+		$scope.addLine = function() {
+			$scope.location.info.push($scope.newLine);
+			//$scope.newLine = '';
+		};
+
+		$scope.removeLine = function(line) {
+
+
+			for (var i=0; i<$scope.location.info.length; i++) {
+				if ($scope.location.info[i] === line) {
+                    $scope.location.info.splice(i, 1);
+				}
+			}
+
+			//$scope.location.info.push($scope.newLine);
+			//$scope.newLine = '';
 		};
 
 		// Remove existing Location
@@ -45,7 +72,7 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 			var location = $scope.location;
 
 			location.$update(function(x) {
-				console.log(x);
+                $location.path('/busstops');
 				//$location.path('locations/' + location._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
