@@ -8,6 +8,7 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 		//$scope.lines = [];
 
 		$scope.newLine = '';
+		$scope.newLabel = 'test';
 		// Create new Location
 		$scope.newBusstop = function() {
 			// Create new Location object
@@ -37,6 +38,11 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 			//$scope.newLine = '';
 		};
 
+        $scope.addLabel = function() {
+            $scope.location.labels.push($scope.newLabel);
+            //$scope.newLine = '';
+        };
+
 		$scope.removeLine = function(line) {
 
 
@@ -46,9 +52,20 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 				}
 			}
 
-			//$scope.location.info.push($scope.newLine);
-			//$scope.newLine = '';
+
 		};
+
+        $scope.removeLabel = function(label) {
+
+
+            for (var i=0; i<$scope.location.labels.length; i++) {
+                if ($scope.location.labels[i] === label) {
+                    $scope.location.labels.splice(i, 1);
+                }
+            }
+
+
+        };
 
 		// Remove existing Location
 		$scope.remove = function(location) {

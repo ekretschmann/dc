@@ -20,6 +20,29 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="control-label">Labels</label>
+
+                <div ng-repeat="label in location.labels">
+                    <div class="row">
+                        <div class="col-xs-3">{{label}}</div>
+                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
+                            <a href="" data-ng-click="removeLabel(label)"><i
+                                    class="glyphicon glyphicon-minus-sign"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" data-ng-model="newLabel" class="form-control" placeholder="add Label">
+                        </div>
+                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
+                            <a href="" data-ng-click="addLabel()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label">Lat</label>
 
                 <div class="controls">
