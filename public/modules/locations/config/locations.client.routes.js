@@ -32,6 +32,13 @@ angular.module('locations').config(['$stateProvider',
             state('createBusstop', {
                 url: '/busstops/create',
                 templateUrl: 'modules/locations/views/create-busstop.client.view.html'
+            }).
+            state('dropImport', {
+                url: '/busstops/drop',
+                templateUrl: 'modules/locations/views/drop-busstops.client.view.html'
             });
+
+
+
     }
 ]);

@@ -28,6 +28,10 @@ angular.module('core').controller('HeaderController', function HeaderController(
 
 		}
 
+		if (name === 'DropImport') {
+			$location.path('/busstops/drop');
+		}
+
 		//$mdDialog.show($mdDialog.alert()
 		//		.title(name)
 		//		.textContent('You triggered the "' + name + '" action')

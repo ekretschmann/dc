@@ -5,6 +5,7 @@ module.exports = function(app) {
 
     // Buses Routes
     app.get('/busstops/import', buses.importBusstops);
+    app.get('/busstops/drop/:label', buses.dropBusstops);
 
     //app.get('/busservices/:busId', buses.busservice);
     //

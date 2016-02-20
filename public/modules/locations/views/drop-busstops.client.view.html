@@ -1,0 +1,29 @@
+<section data-ng-controller="LocationsController" data-ng-init="find()">
+
+
+
+    <h1>
+        Drop Busstops
+    </h1>
+
+
+    <form data-ng-submit="dropLabel()" novalidate>
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label" >Label</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="labelToDrop" id="type" class="form-control" placeholder="Type"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-default">
+            </div>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </fieldset>
+    </form>
+</section>

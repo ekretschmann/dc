@@ -19,7 +19,7 @@
 
 
     <h1>
-        Busstops
+        Busstops ({{busstops.length}})
     </h1>
 
 
@@ -37,18 +37,18 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr ng-click="editBusstop(busstop)" md-row md-auto-select ng-repeat="busstop in busstops">
+            <tr ng-click="editBusstop(busstop)" md-row md-auto-select ng-repeat="busstop in busstops track by $index">
                 <td md-cell>
                     <div>{{busstop.name}}</div>
                 </td>
                 <td md-cell>{{busstop.type}}</td>
                 <td md-cell>
-                    <div ng-repeat="label in busstop.labels">{{label}}</div>
+                    <div ng-repeat="label in busstop.labels track by $index">{{label}}</div>
                 </td>
                 <td md-cell>{{busstop.lat}}</td>
                 <td md-cell>{{busstop.lng}}</td>
                 <td md-cell>
-                    <div ng-repeat="line in busstop.info">{{line}}</div>
+                    <div ng-repeat="line in busstop.info track by $index">{{line}}</div>
                 </td>
             </tr>
             </tbody>

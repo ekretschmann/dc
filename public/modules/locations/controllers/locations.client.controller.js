@@ -1,14 +1,17 @@
 'use strict';
 
 // Locations controller
-angular.module('locations').controller('LocationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Locations',
-	function($scope, $stateParams, $location, Authentication, Locations) {
+angular.module('locations').controller('LocationsController', ['$scope', '$stateParams', '$location', '$http','Authentication', 'Locations',
+	function($scope, $stateParams, $location, $http, Authentication, Locations) {
 		$scope.authentication = Authentication;
 
 		//$scope.lines = [];
 
 		$scope.newLine = '';
 		$scope.newLabel = 'test';
+        $scope.labelToDrop = '';
+
+
 		// Create new Location
 		$scope.newBusstop = function() {
 			// Create new Location object
@@ -22,6 +25,15 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 
 
 		};
+
+        $scope.dropLabel = function() {
+
+            $http.get('/busstops/drop/'+$scope.labelToDrop)
+                .then(function (response) {
+                    console.log(response);
+                });
+
+        };
 
 		$scope.create = function() {
 
@@ -114,7 +126,7 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 
 		$scope.query = {
 			order: 'name',
-			limit: 5,
+			limit: 500,
 			page: 1
 		};
 
