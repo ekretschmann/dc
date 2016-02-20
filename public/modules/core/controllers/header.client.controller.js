@@ -20,6 +20,14 @@ angular.module('core').controller('HeaderController', function HeaderController(
 			$location.path('/busstops/create');
 		}
 
+		if (name === 'ImportBusstops') {
+			$http.get('/busstops/import')
+				.then(function (response) {
+					console.log(response);
+				});
+
+		}
+
 		//$mdDialog.show($mdDialog.alert()
 		//		.title(name)
 		//		.textContent('You triggered the "' + name + '" action')
