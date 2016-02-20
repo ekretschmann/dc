@@ -11,12 +11,17 @@ angular.module('core').controller('HeaderController', function HeaderController(
 	this.authentication = Authentication;
 
 	this.sampleAction = function(name, ev) {
-		$mdDialog.show($mdDialog.alert()
-				.title(name)
-				.textContent('You triggered the "' + name + '" action')
-				.ok('Great')
-				.targetEvent(ev)
-		);
+
+		if (name === 'ListBusstops') {
+			$location.path('/busstops');
+		}
+
+		//$mdDialog.show($mdDialog.alert()
+		//		.title(name)
+		//		.textContent('You triggered the "' + name + '" action')
+		//		.ok('Great')
+		//		.targetEvent(ev)
+		//);
 	};
 
 	this.signOut = function(name, ev) {
