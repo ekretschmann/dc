@@ -1,8 +1,7 @@
 'use strict';
 
 // Locations controller
-angular.module('locations').controller('LocationsController', ['$scope', '$stateParams', '$location', '$http','Authentication', 'Locations',
-	function($scope, $stateParams, $location, $http, Authentication, Locations) {
+angular.module('locations').controller('LocationsController', function($scope, $stateParams, $location, $http, Authentication, Locations) {
 		$scope.authentication = Authentication;
 
 		//$scope.lines = [];
@@ -159,4 +158,4 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 
 
 	}
-]);
+);

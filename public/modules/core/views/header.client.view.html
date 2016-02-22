@@ -21,7 +21,6 @@
             </button>
 
 
-
             <!--</md-menu>-->
 
         </md-menu-bar>
@@ -35,35 +34,52 @@
                     Buses
                 </button>
                 <md-menu-content>
-                    <!--<md-menu-item>-->
-                    <!--<md-button ng-click="ctrl.sampleAction('share', $event)">-->
-                    <!--Busstops-->
-                    <!--</md-button>-->
-                    <!--</md-menu-item>-->
-                    <!--<md-menu-divider></md-menu-divider>-->
                     <md-menu-item>
                         <md-menu>
                             <md-button ng-click="$mdOpenMenu()">Busstops</md-button>
                             <md-menu-content>
                                 <md-menu-item>
-                                    <md-button ng-click="ctrl.sampleAction('ListBusstops', $event)">List</md-button>
+                                    <md-button ng-click="ctrl.menuAction('ListBusstops', $event)">List</md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button ng-click="ctrl.sampleAction('AddBusstop', $event)">Add</md-button>
+                                    <md-button ng-click="ctrl.menuAction('AddBusstop', $event)">Add</md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button ng-click="ctrl.sampleAction('ImportBusstops', $event)">Import</md-button>
+                                    <md-button ng-click="ctrl.menuAction('ImportBusstops', $event)">Import</md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button ng-click="ctrl.sampleAction('DropImport', $event)">Drop Import</md-button>
-                                </md-menu-item>
-                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Spreadsheet', $event)">Spreadsheet</md-button></md-menu-item>-->
-                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Presentation', $event)">Presentation</md-button></md-menu-item>-->
-                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Form', $event)">Form</md-button></md-menu-item>-->
-                                <!--<md-menu-item><md-button ng-click="ctrl.sampleAction('New Drawing', $event)">Drawing</md-button></md-menu-item>-->
+                                    <md-button ng-click="ctrl.menuAction('DropImport', $event)">Drop Import
+                                    </md-button>
                             </md-menu-content>
                         </md-menu>
                     </md-menu-item>
+
+
+                </md-menu-content>
+            </md-menu>
+
+            <md-menu>
+
+
+                <button ng-click="$mdOpenMenu()">
+                    Users
+                </button>
+                <md-menu-content>
+
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.menuAction('ListUsers', $event)">List</md-button>
+                    </md-menu-item>
+                    <!--<md-menu-item>-->
+                        <!--<md-button ng-click="ctrl.menuAction('AddBusstop', $event)">Add</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button ng-click="ctrl.menuAction('ImportBusstops', $event)">Import</md-button>-->
+                    <!--</md-menu-item>-->
+                    <!--<md-menu-item>-->
+                        <!--<md-button ng-click="ctrl.menuAction('DropImport', $event)">Drop Import</md-button>-->
+                    <!--</md-menu-item>-->
+
+
                 </md-menu-content>
             </md-menu>
 
@@ -91,19 +107,19 @@
 
     <!--</md-menu-item>-->
     <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-button ng-click="ctrl.sampleAction('Open', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button ng-click="ctrl.menuAction('Open', $event)">&ndash;&gt;-->
     <!--&lt;!&ndash;Open...&ndash;&gt;-->
     <!--&lt;!&ndash;&lt;!&ndash;<span class="md-alt-text"> {{ 'M-O' | keyboardShortcut }}</span>&ndash;&gt;&ndash;&gt;-->
     <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
     <!--&lt;!&ndash;</md-menu-item>&ndash;&gt;-->
     <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-button disabled="disabled" ng-click="ctrl.sampleAction('Rename', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button disabled="disabled" ng-click="ctrl.menuAction('Rename', $event)">&ndash;&gt;-->
     <!--&lt;!&ndash;Rename&ndash;&gt;-->
     <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
     <!--&lt;!&ndash;</md-menu-item>&ndash;&gt;-->
     <!--&lt;!&ndash;<md-menu-divider></md-menu-divider>&ndash;&gt;-->
     <!--&lt;!&ndash;<md-menu-item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-button ng-click="ctrl.sampleAction('Print', $event)">&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-button ng-click="ctrl.menuAction('Print', $event)">&ndash;&gt;-->
     <!--&lt;!&ndash;Print&ndash;&gt;-->
     <!--&lt;!&ndash;&lt;!&ndash;<span class="md-alt-text">{{ 'M-P' | keyboardShortcut }}</span>&ndash;&gt;&ndash;&gt;-->
     <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
@@ -122,7 +138,7 @@
     <!--</md-menu-content>-->
     <!--&lt;!&ndash;<md-menu-content>&ndash;&gt;-->
     <!--&lt;!&ndash;<md-menu>&ndash;&gt;-->
-    <!--&lt;!&ndash;<md-menu-item><md-button ng-click="ctrl.sampleAction('New Document', $event)">Sign Out</md-button></md-menu-item>&ndash;&gt;-->
+    <!--&lt;!&ndash;<md-menu-item><md-button ng-click="ctrl.menuAction('New Document', $event)">Sign Out</md-button></md-menu-item>&ndash;&gt;-->
     <!--&lt;!&ndash;</md-menu>&ndash;&gt;-->
     <!--&lt;!&ndash;</md-menu-content>&ndash;&gt;-->
 
