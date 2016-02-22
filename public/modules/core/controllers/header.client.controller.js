@@ -32,6 +32,7 @@ angular.module('core').controller('HeaderController', function HeaderController(
 		}
 
 		if (name === 'ListUsers') {
+			console.log('xxxx');
 			$location.path('/users');
 		}
 	};
