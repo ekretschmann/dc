@@ -110,9 +110,31 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 
 		// Find a list of Locations
 		$scope.find = function() {
-			$scope.locations = Locations.query();
-			$scope.busstops = $scope.locations;
+			$scope.locations = Locations.query(function() {
+                $scope.nextPage();
+            });
+
+
 		};
+
+        $scope.onPaginate = function(page, limit) {
+            $scope.query.page = page;
+            $scope.query.limit = limit;
+            $scope.nextPage();
+        };
+
+        $scope.nextPage = function() {
+
+            $scope.busstops = [];
+            var min = Math.min(($scope.query.page-1) * $scope.query.limit);
+            var max = Math.min($scope.query.page * $scope.query.limit -1, $scope.locations.length);
+            for (var i=min; i<max; i++) {
+                $scope.busstops.push($scope.locations[i]);
+            }
+
+            console.log(min,max);
+           // console.log($scope.busstops);
+        };
 
 		// Find existing Location
 		$scope.findOne = function() {
@@ -126,7 +148,7 @@ angular.module('locations').controller('LocationsController', ['$scope', '$state
 
 		$scope.query = {
 			order: 'name',
-			limit: 500,
+			limit: 20,
 			page: 1
 		};
 

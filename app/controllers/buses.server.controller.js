@@ -79,19 +79,16 @@ var getAllBusstops = function(lineIds) {
     var busstops = [];
 
     for (var i=0; i<lineIds.length; i++) {
-    //for (var i=0; i<30; i++) {
         var allStops = getBusstops(lineIds[i]);
 
-        allStops.then(function(stops) {
-
-            busstops.push(stops);
-            received++;
-            console.log('received ',received, ' ', lineIds.length);
-            if (received === lineIds.length) {
-            //if (received === 30) {
-                deferred.resolve(busstops);
-            }
-        });
+        //allStops.then(function(stops) {
+        //
+        //    busstops.push(stops);
+        //    received++;
+        //    if (received === lineIds.length) {
+        //        deferred.resolve(busstops);
+        //    }
+        //});
     }
     return deferred.promise;
 };
@@ -104,7 +101,6 @@ exports.importBusstops = function (req, res) {
         function (lineIds) {
             getAllBusstops(lineIds).then(function(stops) {
 
-                console.log(stops.length);
                 for (var i=0; i<stops.length; i++) {
                  //   console.log(stops[i].length);
                     for (var j=0; j<stops[i].length; j++) {
@@ -117,12 +113,7 @@ exports.importBusstops = function (req, res) {
                     }
                 }
 
-
-                console.log('xxxxx');
-                console.log(busstops.length);
-                console.log(busstopIds.length);
-
-                for (var k = 0; k<busstops.length; k++) {
+  for (var k = 0; k<busstops.length; k++) {
                     var stop = busstops[k];
                     //console.log(stop);
                     //console.log(stop.Services);
