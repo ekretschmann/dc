@@ -7,6 +7,36 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 
+/**
+ * Require login routing middleware
+ */
+exports.requiresLogin = function(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({
+            message: 'User is not logged in'
+        });
+    }
+
+    next();
+};
+
+exports.create = function(req, res) {
+    var user = new User(req.body);
+    user.provider = 'local';
+    //article.user = req.user;
+    //
+    user.save(function(err) {
+        console.log(err);
+        if (err) {
+            return res.status(400).send({
+                message: err
+            });
+        } else {
+            res.json(user);
+        }
+    });
+};
+
 
 exports.list = function (req, res) {
 

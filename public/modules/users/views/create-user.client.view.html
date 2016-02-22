@@ -1,0 +1,52 @@
+<section data-ng-controller="UsersController" data-ng-init="newUser()">
+        <h1>Create User</h1>
+
+    <form data-ng-submit="create()" novalidate>
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label" >First Name</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="user.firstName"  class="form-control" placeholder="First Name"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" >Last Name</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="user.lastName" class="form-control" placeholder="Last Name"
+                           required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="user.email" class="form-control" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Username</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="user.username" class="form-control" placeholder="Username" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Password</label>
+
+                <div class="controls">
+                    <input type="text" data-ng-model="user.password" class="form-control" placeholder="Username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-default">
+            </div>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </fieldset>
+    </form>
+</section>

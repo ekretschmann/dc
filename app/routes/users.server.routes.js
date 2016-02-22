@@ -13,7 +13,8 @@ module.exports = function(app) {
 	app.route('/users/me').get(users.me);
 	app.route('/users').
 		put(users.update).
-		get(users.list);
+		post(users.requiresLogin, users.create).
+		get(users.requiresLogin, users.list);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
 
 	// Setting up the users password api

@@ -44,6 +44,10 @@ angular.module('users').config(['$stateProvider',
             state('listUsers', {
                 url: '/users',
                 templateUrl: 'modules/users/views/list-users.client.view.html'
+            }).
+            state('createUser', {
+                url: '/users/create',
+                templateUrl: 'modules/users/views/create-user.client.view.html'
             });
     }
 ]);

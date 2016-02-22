@@ -16,7 +16,7 @@ angular.module('core').controller('HeaderController', function HeaderController(
 			$location.path('/busstops');
 		}
 
-		if (name === 'AddBusstop') {
+		if (name === 'CreateBusstop') {
 			$location.path('/busstops/create');
 		}
 
@@ -32,8 +32,11 @@ angular.module('core').controller('HeaderController', function HeaderController(
 		}
 
 		if (name === 'ListUsers') {
-			console.log('xxxx');
 			$location.path('/users');
+		}
+
+		if (name === 'CreateUser') {
+			$location.path('/users/create');
 		}
 	};
 
