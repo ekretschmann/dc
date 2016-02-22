@@ -43,6 +43,8 @@ angular.module('core').controller('HeaderController', function HeaderController(
 	this.signOut = function(name, ev) {
 		$http.get('/auth/signout');
 		this.authentication.user = undefined;
+		$location.path('/');
+
 	};
 
 
