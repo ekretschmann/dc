@@ -51,6 +51,18 @@
                                     <md-button ng-click="ctrl.menuAction('DropImport', $event)">Drop Import
                                     </md-button>
                             </md-menu-content>
+
+                        </md-menu>
+
+
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-menu>
+                            <md-button ng-click="$mdOpenMenu()">Buslines</md-button>
+                            <md-menu-item>
+                                <md-button ng-click="ctrl.menuAction('CreateBusline', $event)">Create</md-button>
+                            </md-menu-item>
                         </md-menu>
                     </md-menu-item>
 
@@ -74,10 +86,10 @@
                         <md-button ng-click="ctrl.menuAction('CreateUser', $event)">Create</md-button>
                     </md-menu-item>
                     <!--<md-menu-item>-->
-                        <!--<md-button ng-click="ctrl.menuAction('ImportBusstops', $event)">Import</md-button>-->
+                    <!--<md-button ng-click="ctrl.menuAction('ImportBusstops', $event)">Import</md-button>-->
                     <!--</md-menu-item>-->
                     <!--<md-menu-item>-->
-                        <!--<md-button ng-click="ctrl.menuAction('DropImport', $event)">Drop Import</md-button>-->
+                    <!--<md-button ng-click="ctrl.menuAction('DropImport', $event)">Drop Import</md-button>-->
                     <!--</md-menu-item>-->
 
 

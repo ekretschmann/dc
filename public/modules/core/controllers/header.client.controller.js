@@ -20,6 +20,10 @@ angular.module('core').controller('HeaderController', function HeaderController(
 			$location.path('/busstops/create');
 		}
 
+		if (name === 'CreateBusline') {
+			$location.path('/buslines/create');
+		}
+
 		if (name === 'ImportBusstops') {
 			$http.get('/busstops/import')
 				.then(function (response) {
