@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var users = require('../../app/controllers/users.server.controller'),
-	buslines = require('../../app/controllers/busline.server.controller');
+	buslines = require('../../app/controllers/buslines.server.controller');
 
 module.exports = function(app) {
 	app.route('/buslines')
@@ -18,3 +18,4 @@ module.exports = function(app) {
 
 	app.param('buslineId', buslines.buslineByID);
 };
+
