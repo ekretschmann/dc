@@ -5,66 +5,66 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Article = mongoose.model('Article'),
+	Busline = mongoose.model('Busline'),
 	_ = require('lodash');
 
 /**
  * Create a article
  */
 exports.create = function(req, res) {
-	var article = new Article(req.body);
-	article.user = req.user;
+	var busline = new Busline(req.body);
+	busline.user = req.user;
 
-	article.save(function(err) {
+	busline.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(busline);
 		}
 	});
 };
 
 /**
- * Show the current article
+ * Show the current busline
  */
 exports.read = function(req, res) {
-	res.json(req.article);
+	res.json(req.busline);
 };
 
 /**
- * Update a article
+ * Update a busline
  */
 exports.update = function(req, res) {
-	var article = req.article;
+	var busline = req.busline;
 
-	article = _.extend(article, req.body);
+	busline = _.extend(busline, req.body);
 
-	article.save(function(err) {
+	busline.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(busline);
 		}
 	});
 };
 
 /**
- * Delete an article
+ * Delete an busline
  */
 exports.delete = function(req, res) {
-	var article = req.article;
+	var busline = req.busline;
 
-	article.remove(function(err) {
+	busline.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(busline);
 		}
 	});
 };
@@ -73,13 +73,13 @@ exports.delete = function(req, res) {
  * List of Articles
  */
 exports.list = function(req, res) {
-	Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
+	Busline.find().sort('-created').populate('user', 'displayName').exec(function(err, buslines) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(articles);
+			res.json(buslines);
 		}
 	});
 };
@@ -87,11 +87,11 @@ exports.list = function(req, res) {
 /**
  * Article middleware
  */
-exports.articleByID = function(req, res, next, id) {
-	Article.findById(id).populate('user', 'displayName').exec(function(err, article) {
+exports.buslineByID = function(req, res, next, id) {
+	Busline.findById(id).populate('user', 'displayName').exec(function(err, busline) {
 		if (err) return next(err);
-		if (!article) return next(new Error('Failed to load article ' + id));
-		req.article = article;
+		if (!busline) return next(new Error('Failed to load busline ' + id));
+		req.busline = busline;
 		next();
 	});
 };
@@ -100,7 +100,7 @@ exports.articleByID = function(req, res, next, id) {
  * Article authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.article.user.id !== req.user.id) {
+	if (req.busline.user.id !== req.user.id) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});
