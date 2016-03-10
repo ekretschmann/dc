@@ -1,8 +1,17 @@
 'use strict';
 
 // Locations controller
-angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Buslines',
-    function ($scope, $stateParams, $location, Authentication, Buslines) {
+angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'Authentication', 'lodash','Buslines', 'Locations',
+    function ($scope, $stateParams, $location, Authentication, _, Buslines, Locations) {
+
+
+        $scope.searchText = '';
+
+        $scope.getMatches = function(searchText) {
+            return _.find($scope.busstops, function(stop) {
+                stop.name.startsWith(searchText);
+            });
+        };
 
         // Find a list of Locations
         $scope.find = function () {
@@ -11,6 +20,8 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
                 console.log($scope.buslines.length);
             });
 
+            $scope.busstops = Locations.query(function() {
+            });
 
         };
 

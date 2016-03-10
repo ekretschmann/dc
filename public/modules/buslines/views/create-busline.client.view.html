@@ -32,7 +32,14 @@
                 <div class="controls">
                     <div class="row">
                         <div class="col-xs-3">
-                            <input type="text" data-ng-model="newLine" class="form-control" placeholder="add Stop">
+                            <md-autocomplete md-selected-item="selectedBusstop"
+                                             md-search-text="searchText"
+                                             md-items="stop in getMatches(searchText)"
+                                             md-item-text="stop.name">
+
+                            </md-autocomplete>
+
+                            <!--<input type="text" data-ng-model="newLine" class="form-control" placeholder="add Stop">-->
                         </div>
                         <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
                             <a href="" data-ng-click="addLine()"><i class="glyphicon glyphicon-plus-sign"></i></a>
