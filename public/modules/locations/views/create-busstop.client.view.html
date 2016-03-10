@@ -1,16 +1,8 @@
-<section data-ng-controller="LocationsController" data-ng-init="newBusstop()">
+<section data-ng-controller="BusstopsController" data-ng-init="newBusstop()">
         <h1>Create Busstop</h1>
 
     <form data-ng-submit="create()" novalidate>
         <fieldset>
-            <div class="form-group">
-                <label class="control-label" for="name">Type</label>
-
-                <div class="controls">
-                    <input type="text" data-ng-model="location.type" id="type" class="form-control" placeholder="Type"
-                           required>
-                </div>
-            </div>
             <div class="form-group">
                 <label class="control-label" for="name">Name</label>
 
@@ -34,13 +26,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label">Lines</label>
+                <label class="control-label">Labels</label>
 
-                <div ng-repeat="line in location.info">
+                <div ng-repeat="label in location.labels">
                     <div class="row">
-                        <div class="col-xs-3">{{line}}</div>
+                        <div class="col-xs-3">{{label}}</div>
                         <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
-                            <a href="" data-ng-click="removeLine(line)"><i
+                            <a href="" data-ng-click="removeLabel(label)"><i
                                     class="glyphicon glyphicon-minus-sign"></i></a>
                         </div>
                     </div>
@@ -48,10 +40,10 @@
                 <div class="controls">
                     <div class="row">
                         <div class="col-xs-3">
-                            <input type="text" data-ng-model="newLine" class="form-control" placeholder="add Line">
+                            <input type="text" data-ng-model="newLine" class="form-control" placeholder="add Label">
                         </div>
                         <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
-                            <a href="" data-ng-click="addLine()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                            <a href="" data-ng-click="addLabel()"><i class="glyphicon glyphicon-plus-sign"></i></a>
                         </div>
                     </div>
                 </div>

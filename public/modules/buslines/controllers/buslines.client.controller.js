@@ -14,4 +14,20 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
 
         };
 
+        // Create new Location
+        $scope.newBusline = function() {
+            // Create new Location object
+            $scope.busline = new Buslines ({
+                name: ''
+            });
+
+
+
+
+        };
+
+        $scope.create = function() {
+            console.log($scope.busline);
+        };
+
     }]);

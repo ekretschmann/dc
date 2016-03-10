@@ -14,11 +14,11 @@ var BuslineSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	id: {
-		type: String,
-		trim: true,
-		required: 'Bus line need an unique identifier'
-	},
+	//id: {
+	//	type: String,
+	//	trim: true,
+	//	required: 'Bus line need an unique identifier'
+	//},
 	name: {
 		type: String,
 		default: '',
