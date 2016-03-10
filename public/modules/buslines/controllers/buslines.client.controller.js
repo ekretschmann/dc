@@ -1,16 +1,27 @@
 'use strict';
 
 // Locations controller
-angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'Authentication', 'lodash','Buslines', 'Locations',
-    function ($scope, $stateParams, $location, Authentication, _, Buslines, Locations) {
+angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Buslines', 'Locations',
+    function ($scope, $stateParams, $location, Authentication, Buslines, Locations) {
 
 
         $scope.searchText = '';
+        $scope.selectedBusstop = undefined;
 
         $scope.getMatches = function(searchText) {
-            return _.find($scope.busstops, function(stop) {
-                stop.name.startsWith(searchText);
-            });
+
+            var result = [];
+            for (var i=0; i<$scope.busstops.length; i++) {
+                if ($scope.busstops[i].name.startsWith(searchText)) {
+                    result.push($scope.busstops[i]);
+                }
+            }
+
+            return result;
+
+            //return _.find($scope.busstops, function(stop) {
+            //    stop.name.startsWith(searchText);
+            //});
         };
 
         // Find a list of Locations
@@ -20,21 +31,33 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
                 console.log($scope.buslines.length);
             });
 
-            $scope.busstops = Locations.query(function() {
-            });
+
 
         };
 
+        $scope.removeStop = function(stop) {
+            for (var i=0; i<$scope.busline.stops.length; i++) {
+                if ($scope.busline.stops[i]._id === stop._id) {
+                    $scope.busline.stops.splice(i, 1);
+                }
+            }
+        };
         // Create new Location
         $scope.newBusline = function() {
             // Create new Location object
             $scope.busline = new Buslines ({
-                name: ''
+                name: '',
+                stops: []
             });
 
+            $scope.busstops = Locations.query(function() {});
 
 
+        };
 
+        $scope.addStopToLine = function() {
+            $scope.busline.stops.push($scope.selectedBusstop);
+            $scope.selectedBusstop = '';
         };
 
         $scope.create = function() {

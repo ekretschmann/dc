@@ -1,5 +1,5 @@
 <section data-ng-controller="BuslinesController" data-ng-init="newBusline()">
-        <h1>Create Busline</h1>
+    <h1>Create Busline</h1>
 
     <form data-ng-submit="create()" novalidate>
         <fieldset>
@@ -20,14 +20,41 @@
             <div class="form-group">
                 <label class="control-label">Stops</label>
 
-                <div ng-repeat="stop in busline.stop">
-                    <!--<div class="row">-->
-                        <!--<div class="col-xs-3">{{line}}</div>-->
-                        <!--<div class="col-xs-1" style="text-align: left; margin-top: 0.5em">-->
-                            <!--<a href="" data-ng-click="removeLine(line)"><i-->
-                                    <!--class="glyphicon glyphicon-minus-sign"></i></a>-->
+                <div ng-repeat="stop in busline.stops">
+                    <div>
+                        <div><a href="" data-ng-click="removeStop(stop)"><i
+                                class="glyphicon glyphicon-minus-sign"></i></a> {{stop.name}}</div>
+
+                        <div>Arrivals</div>
+                        <div ng-if="!stop.arrivals || stop.arrivals.length === 0">no arrival times</div>
+                        <div ng-repeat="time in stop.arrivals">
+                            {{time}}
+                        </div>
+
+                        <div>Departures</div>
+                        <div ng-if="!stop.departures || stop.departures.length === 0">no departure times</div>
+                        <div ng-repeat="time in stop.departures">
+                            {{time}}
+                        </div>
+
+                    </div>
+
+                        <!--<div class="col-xs-3">-->
+                            <!--<input type="text" data-ng-model="arrivalTime" class="form-control"-->
+                                   <!--placeholder="add Arrival Time">-->
+                           <!--</div>-->
+                        <!--<div class="col-xs-1" style="text-align: left">-->
+                            <!--<a href="" data-ng-click="addArrivalTime()"><i class="glyphicon glyphicon-plus-sign"></i></a>-->
                         <!--</div>-->
+                       <!--<div class="col-xs-4">-->
+                        <!--<input type="text" data-ng-model="departureTime" class="form-control"-->
+                               <!--placeholder="add Departure Time">-->
+
+                        <!--<a href="" data-ng-click="addDepartureTime()"><i class="glyphicon glyphicon-plus-sign"></i></a>-->
+                            <!--</div>-->
                     <!--</div>-->
+
+
                 </div>
                 <div class="controls">
                     <div class="row">
@@ -42,7 +69,7 @@
                             <!--<input type="text" data-ng-model="newLine" class="form-control" placeholder="add Stop">-->
                         </div>
                         <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
-                            <a href="" data-ng-click="addLine()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                            <a href="" data-ng-click="addStopToLine()"><i class="glyphicon glyphicon-plus-sign"></i></a>
                         </div>
                     </div>
                 </div>
