@@ -1,27 +1,29 @@
 'use strict';
 
 // Locations controller
-angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Buslines', 'Locations',
-    function ($scope, $stateParams, $location, Authentication, Buslines, Locations) {
+angular.module('buslines').controller('BuslinesController', ['$scope', '$stateParams', '$location', 'lodash', 'Authentication', 'Buslines', 'Locations',
+    function ($scope, $stateParams, $location, _, Authentication, Buslines, Locations) {
 
 
         $scope.searchText = '';
         $scope.selectedBusstop = undefined;
 
+        $scope.querySearch   = '';
+
+        $scope.times = {};
+        $scope.times.arrival = '';
+        $scope.times.departure = '';
+
         $scope.getMatches = function(searchText) {
 
-            var result = [];
-            for (var i=0; i<$scope.busstops.length; i++) {
-                if ($scope.busstops[i].name.startsWith(searchText)) {
-                    result.push($scope.busstops[i]);
-                }
+            if (searchText.length === 0) {
+                return [];
             }
 
-            return result;
 
-            //return _.find($scope.busstops, function(stop) {
-            //    stop.name.startsWith(searchText);
-            //});
+            return _.filter($scope.busstops, function(stop) {
+                return stop.name.indexOf(searchText) > -1;
+            });
         };
 
         // Find a list of Locations
@@ -51,17 +53,36 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             });
 
             $scope.busstops = Locations.query(function() {});
-
-
         };
 
-        $scope.addStopToLine = function() {
-            $scope.busline.stops.push($scope.selectedBusstop);
-            $scope.selectedBusstop = '';
+        $scope.addStopToLine = function(stop) {
+            if (stop) {
+                $scope.busline.stops.push(stop);
+                $scope.searchText = '';
+            }
         };
 
         $scope.create = function() {
             console.log($scope.busline);
         };
+
+        $scope.addArrivalTime = function(stop) {
+            if (stop.arrivals) {
+                stop.arrivals.push($scope.times.arrival);
+            } else {
+                stop.arrivals = [$scope.times.arrival];
+            }
+        };
+
+        $scope.addDepartureTime = function(stop) {
+            if (stop.departures) {
+                stop.departures.push($scope.times.departure);
+            } else {
+                stop.departures = [$scope.times.departure];
+            }
+        };
+
+
+
 
     }]);

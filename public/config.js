@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'dc';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',   'ngSanitize',  'ui.router', 'ui.bootstrap', 'ngMaterial', 'md.data.table'];
+	var applicationModuleVendorDependencies = ['ngLodash', 'ngResource', 'ngCookies',  'ngAnimate',   'ngSanitize',  'ui.router', 'ui.bootstrap', 'ngMaterial', 'md.data.table'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

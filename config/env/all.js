@@ -34,7 +34,8 @@ module.exports = {
                 'public/lib/angular-aria/angular-aria.js',
                 'public/lib/angular-animate/angular-animate.js',
                 'public/lib/angular-material/angular-material.js',
-                'public/lib/angular-material-data-table/dist/md-data-table.min.js'
+                'public/lib/angular-material-data-table/dist/md-data-table.min.js',
+                'public/lib/ng-lodash/build/ng-lodash.js'
             ]
         },
         css: [
