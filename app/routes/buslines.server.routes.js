@@ -3,10 +3,12 @@
 /**
  * Module dependencies.
  */
-var users = require('../../app/controllers/users.server.controller'),
-	buslines = require('../../app/controllers/buslines.server.controller');
 
 module.exports = function(app) {
+
+	var users = require('../../app/controllers/users.server.controller'),
+		buslines = require('../../app/controllers/buslines.server.controller');
+
 	app.route('/buslines')
 		.get(buslines.list)
 		.post(users.requiresLogin, buslines.create);

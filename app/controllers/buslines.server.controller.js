@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  * Create a article
  */
 exports.create = function(req, res) {
+	console.log('xxxx');
 	var busline = new Busline(req.body);
 	busline.user = req.user;
 

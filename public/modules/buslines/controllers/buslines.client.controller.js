@@ -11,8 +11,8 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
         $scope.querySearch   = '';
 
         $scope.times = {};
-        $scope.times.arrival = '';
-        $scope.times.departure = '';
+        $scope.times.arrivals = [];
+        $scope.times.departure = [];
 
         $scope.getMatches = function(searchText) {
 
@@ -49,7 +49,8 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             // Create new Location object
             $scope.busline = new Buslines ({
                 name: '',
-                stops: []
+                stops: [],
+                labels: []
             });
 
             $scope.busstops = Locations.query(function() {});
@@ -63,25 +64,54 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
         };
 
         $scope.create = function() {
-            console.log($scope.busline);
+            $scope.busline.$save(function(response) {
+                //$location.path('/busstops');
+
+                console.log(response);
+            }, function(errorResponse) {
+                console.log(errorResponse);
+                $scope.error = errorResponse.data.message;
+            });
         };
 
-        $scope.addArrivalTime = function(stop) {
+        $scope.addArrivalTime = function(stop, index) {
+            console.log(stop);
+            console.log(index);
             if (stop.arrivals) {
-                stop.arrivals.push($scope.times.arrival);
+                stop.arrivals.push($scope.times.arrivals[index]);
             } else {
-                stop.arrivals = [$scope.times.arrival];
+                stop.arrivals = [$scope.times.arrivals[index]];
             }
         };
 
-        $scope.addDepartureTime = function(stop) {
+        $scope.addDepartureTime = function(stop, index) {
+            //console.log(stop);
+            //console.log(index);
             if (stop.departures) {
-                stop.departures.push($scope.times.departure);
+                stop.departures.push($scope.times.departures[index]);
             } else {
-                stop.departures = [$scope.times.departure];
+                stop.departures = [$scope.times.departures[index]];
             }
         };
 
+        $scope.addLabel = function() {
+
+            $scope.busline.labels.push($scope.newLabel);
+            //$scope.newLine = '';
+        };
+
+
+        $scope.removeLabel = function(label) {
+
+
+            for (var i=0; i<$scope.busline.labels.length; i++) {
+                if ($scope.busline.labels[i] === label) {
+                    $scope.busline.labels.splice(i, 1);
+                }
+            }
+
+
+        };
 
 
 

@@ -11,6 +11,7 @@ var _ = require('lodash'),
  * Require login routing middleware
  */
 exports.requiresLogin = function(req, res, next) {
+    console.log('bbbbb');
     if (!req.isAuthenticated()) {
         return res.status(401).send({
             message: 'User is not logged in'
