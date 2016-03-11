@@ -24,6 +24,10 @@ angular.module('core').controller('HeaderController', function HeaderController(
 			$location.path('/buslines/create');
 		}
 
+		if (name === 'ListBuslines') {
+			$location.path('/buslines');
+		}
+
 		if (name === 'ImportBusstops') {
 			$http.get('/busstops/import')
 				.then(function (response) {

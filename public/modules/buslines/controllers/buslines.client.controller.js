@@ -30,7 +30,7 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
         $scope.find = function () {
             $scope.buslines = Buslines.query(function () {
                 //$scope.nextPage();
-                console.log($scope.buslines.length);
+               // console.log($scope.buslines.length);
             });
 
 
@@ -56,6 +56,15 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             $scope.busstops = Locations.query(function() {});
         };
 
+        $scope.getBusline = function() {
+            // Create new Location object
+            $scope.busline = Buslines.get({
+                buslineId: $stateParams.buslineId
+            });
+
+            $scope.busstops = Locations.query(function() {});
+        };
+
         $scope.addStopToLine = function(stop) {
             if (stop) {
                 $scope.busline.stops.push(stop);
@@ -65,18 +74,25 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
 
         $scope.create = function() {
             $scope.busline.$save(function(response) {
-                //$location.path('/busstops');
+                $location.path('/buslines');
 
-                console.log(response);
             }, function(errorResponse) {
-                console.log(errorResponse);
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+        $scope.update = function() {
+            var busline = $scope.busline;
+
+            busline.$update(function(x) {
+                $location.path('/buslines');
+                //$location.path('locations/' + location._id);
+            }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
         $scope.addArrivalTime = function(stop, index) {
-            console.log(stop);
-            console.log(index);
             if (stop.arrivals) {
                 stop.arrivals.push($scope.times.arrivals[index]);
             } else {
@@ -85,8 +101,6 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
         };
 
         $scope.addDepartureTime = function(stop, index) {
-            //console.log(stop);
-            //console.log(index);
             if (stop.departures) {
                 stop.departures.push($scope.times.departures[index]);
             } else {
@@ -111,6 +125,10 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             }
 
 
+        };
+
+        $scope.editBusline = function(busline) {
+            $location.path('/buslines/' + busline._id+'/edit');
         };
 
 

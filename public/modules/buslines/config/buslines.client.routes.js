@@ -25,10 +25,10 @@ angular.module('buslines').config(['$stateProvider',
     //  url: '/locations/:locationId/edit',
     //  templateUrl: 'modules/locations/views/edit-location.client.view.html'
     //}).
-    //state('editBusstop', {
-    //  url: '/busstops/:locationId/edit',
-    //  templateUrl: 'modules/locations/views/edit-busstop.client.view.html'
-    //}).
+    state('editBusline', {
+      url: '/buslines/:buslineId/edit',
+      templateUrl: 'modules/buslines/views/edit-busline.client.view.html'
+    }).
     state('createBusline', {
       url: '/buslines/create',
       templateUrl: 'modules/buslines/views/create-busline.client.view.html'

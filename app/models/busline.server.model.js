@@ -25,20 +25,10 @@ var BuslineSchema = new Schema({
 	},
 	stops: [{
 
-		id: {
-			type: String,
-			trim: true,
-			required: 'Bus line need an unique identifier'
-		},
 		name: {
 			type: String,
 			default: '',
 			trim: true
-		},
-		line: {
-			type: String,
-			trim: true,
-			required: 'Bus line need an unique identifier'
 		},
 		arrivals: [{
 			type: String,

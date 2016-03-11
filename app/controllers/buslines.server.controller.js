@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Create a article
  */
 exports.create = function(req, res) {
-	console.log('xxxx');
+
 	var busline = new Busline(req.body);
 	busline.user = req.user;
 
@@ -38,9 +38,15 @@ exports.read = function(req, res) {
  * Update a busline
  */
 exports.update = function(req, res) {
+
+
+
+
+
 	var busline = req.busline;
 
 	busline = _.extend(busline, req.body);
+
 
 	busline.save(function(err) {
 		if (err) {
@@ -101,10 +107,8 @@ exports.buslineByID = function(req, res, next, id) {
  * Article authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.busline.user.id !== req.user.id) {
-		return res.status(403).send({
-			message: 'User is not authorized'
-		});
+	if (!req.user._id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

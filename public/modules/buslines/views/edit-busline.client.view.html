@@ -1,0 +1,168 @@
+<section data-ng-controller="BuslinesController" data-ng-init="getBusline()">
+    <h1>Edit Busline</h1>
+
+    <form>
+        <fieldset>
+
+            <div class="form-group">
+                <label class="control-label" for="name">Name</label>
+
+                <div class="controls">
+                    <input type="text"
+                           data-ng-model="busline.name"
+                           id="name"
+                           class="form-control"
+                           placeholder="Name"
+                           required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Labels</label>
+
+                <div ng-repeat="label in busline.labels">
+                    <div class="row">
+                        <div class="col-xs-3">{{label}}</div>
+                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
+                            <a href="" data-ng-click="removeLabel(label)"><i
+                                    class="glyphicon glyphicon-minus-sign"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" data-ng-model="newLabel" class="form-control" placeholder="add Label">
+                        </div>
+                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
+                            <a href="" data-ng-click="addLabel()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Stops</label>
+
+                <div class="row">
+                    <div class="controls col-xs-3">
+
+                        <md-autocomplete md-no-cache="noCache"
+                                         md-selected-item="selectedItem"
+                                         md-search-text-change="searchTextChange(searchText)"
+                                         md-search-text="searchText"
+                                         md-selected-item-change="addStopToLine(item)"
+                                         md-items="item in getMatches(searchText)"
+                                         md-item-text="item.name"
+                                         md-min-length="0"
+                                         placeholder="Bus stop to add">
+                            <md-item-template>
+                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No stops matching "{{searchText}}" were found.
+                                <!--<a ng-click="ctrl.newState(searchText)">Create a new one!</a>-->
+                            </md-not-found>
+                        </md-autocomplete>
+
+                    </div>
+
+                    <div class="controls col-xs-8">
+                        <div ng-repeat="stop in busline.stops">
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <a href="" data-ng-click="removeStop(stop)">
+                                        <i class="glyphicon glyphicon-minus-sign"></i>
+                                    </a> {{stop.name}}
+                                </div>
+
+                                <div class="col-xs-5">
+
+
+
+                                        <input type="text"
+                                               ng-model="times.arrivals[$index]"
+                                               placeholder="add Arrival Time">
+                                    <a href="" data-ng-click="addArrivalTime(stop, $index)"><i class="glyphicon glyphicon-plus-sign"></i></a>
+
+
+
+
+                                </div>
+
+                                <div class="col-xs-5">
+
+                                    <input type="text"
+                                           ng-model="times.departures[$index]"
+                                           placeholder="add Departure Time">
+                                    <a href="" data-ng-click="addDepartureTime(stop, $index)"><i class="glyphicon glyphicon-plus-sign"></i></a>
+
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-bottom: 1em">
+                                <div class="col-xs-2">
+
+                                </div>
+
+                                <div class="col-xs-5">
+                                    <div ng-if="!stop.arrivals || stop.arrivals.length === 0">no arrival times</div>
+
+                                    <div ng-if="stop.arrivals">
+                                        <div ng-repeat="time in stop.arrivals">{{time}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-5">
+                                    <div ng-if="!stop.departures || stop.departures.length === 0">no departure times</div>
+                                    <div ng-if="stop.departures">
+                                        <div ng-repeat="time in stop.departures">{{time}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div>-->
+                <!--<div></div>-->
+
+                <!--<div>Arrivals</div>-->
+                <!---->
+                <!--<div ng-repeat="time in stop.arrivals">-->
+                <!--{{time}}-->
+                <!--</div>-->
+
+                <!--<div>Departures</div>-->
+                <!---->
+                <!--<div ng-repeat="time in stop.departures">-->
+                <!--{{time}}-->
+                <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<div class="col-xs-3">-->
+                <!--<input type="text" data-ng-model="arrivalTime" class="form-control"-->
+                <!--placeholder="add Arrival Time">-->
+                <!--</div>-->
+                <!--<div class="col-xs-1" style="text-align: left">-->
+                <!---->
+                <!--</div>-->
+                <!--<div class="col-xs-4">-->
+                <!--<input type="text" data-ng-model="departureTime" class="form-control"-->
+                <!--placeholder="add Departure Time">-->
+
+                <!--<a href="" data-ng-click="addDepartureTime()"><i class="glyphicon glyphicon-plus-sign"></i></a>-->
+                <!--</div>-->
+                <!--</div>-->
+
+
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" ng-click="update()">
+            </div>
+            <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </fieldset>
+    </form>
+</section>
