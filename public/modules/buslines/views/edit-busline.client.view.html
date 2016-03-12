@@ -109,51 +109,27 @@
                                     <div ng-if="!stop.arrivals || stop.arrivals.length === 0">no arrival times</div>
 
                                     <div ng-if="stop.arrivals">
-                                        <div ng-repeat="time in stop.arrivals">{{time}}</div>
+                                        <div ng-repeat="time in stop.arrivals">
+                                            <a href="" data-ng-click="removeArrivalTime(stop, $index)"><i class="glyphicon glyphicon-minus-sign"></i></a>
+                                            {{time}}
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-5">
-                                    <div ng-if="!stop.departures || stop.departures.length === 0">no departure times</div>
-                                    <div ng-if="stop.departures">
-                                        <div ng-repeat="time in stop.departures">{{time}}</div>
+                                    <div ng-if="!stop.departures || stop.departures.length ===0">no departure times</div>
+                                    <div ng-if="stop.departures ">
+                                        <div ng-repeat="time in stop.departures">
+                                            <a href="" data-ng-click="removeDepartureTime(stop, $index)"><i class="glyphicon glyphicon-minus-sign"></i></a>
+                                            {{time}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--<div>-->
-                <!--<div></div>-->
 
-                <!--<div>Arrivals</div>-->
-                <!---->
-                <!--<div ng-repeat="time in stop.arrivals">-->
-                <!--{{time}}-->
-                <!--</div>-->
-
-                <!--<div>Departures</div>-->
-                <!---->
-                <!--<div ng-repeat="time in stop.departures">-->
-                <!--{{time}}-->
-                <!--</div>-->
-
-                <!--</div>-->
-
-                <!--<div class="col-xs-3">-->
-                <!--<input type="text" data-ng-model="arrivalTime" class="form-control"-->
-                <!--placeholder="add Arrival Time">-->
-                <!--</div>-->
-                <!--<div class="col-xs-1" style="text-align: left">-->
-                <!---->
-                <!--</div>-->
-                <!--<div class="col-xs-4">-->
-                <!--<input type="text" data-ng-model="departureTime" class="form-control"-->
-                <!--placeholder="add Departure Time">-->
-
-                <!--<a href="" data-ng-click="addDepartureTime()"><i class="glyphicon glyphicon-plus-sign"></i></a>-->
-                <!--</div>-->
-                <!--</div>-->
 
 
             </div>

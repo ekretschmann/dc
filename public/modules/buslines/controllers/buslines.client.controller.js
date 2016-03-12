@@ -131,6 +131,17 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             $location.path('/buslines/' + busline._id+'/edit');
         };
 
+        $scope.removeDepartureTime = function(stop, index) {
+            //console.log(stop);
+            //console.log(time);
+            stop.departures.splice(index, 1);
+        };
+
+        $scope.removeArrivalTime = function(stop, index) {
+            //console.log(stop);
+            //console.log(time);
+            stop.arrivals.splice(index, 1);
+        };
 
 
     }]);
