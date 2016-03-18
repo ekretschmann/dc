@@ -2,7 +2,7 @@
 
 var http = require('http');
 var https = require('https');
-var q = require('q');
+//var q = require('q');
 
 var mongoose = require('mongoose');
 var Location = mongoose.model('Location');
@@ -45,7 +45,8 @@ var getBuslines = function () {
 var getBusstops = function (lineId) {
 
 
-    var deferred = q.defer();
+   // var deferred = q.defer();
+    var deferred;
 
     var serviceOptions = {
         host: 'mk.ods-live.co.uk',
