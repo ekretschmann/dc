@@ -24,30 +24,16 @@ var BuslineSchema = new Schema({
 		trim: true
 	},
 	stops: [{
-
-		name: {
-			type: String,
-			default: '',
-			trim: true
-		},
-		arrivals: [{
-			type: String,
-			trim: true
-		}],
-		departures: [{
-			type: String,
-			trim: true
-		}],
-		lat: {
-			type: Number,
-			required: 'Bus stop needs a latitude'
-		},
-		lng: {
-			type: Number,
-			required: 'Bus stop needs a longitude'
-		}
-
-
+		type: String,
+		default: []
+	}],
+	runtimes: [{
+		type: String,
+		default: []
+	}],
+	times: [{
+		type: Number,
+		default: []
 	}]
 });
 
