@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var Location = mongoose.model('Location');
 
 var getBuslines = function () {
-    var deferred = q.defer();
+    //var deferred = q.defer();
     var linesOptions = {
         host: 'mk.ods-live.co.uk',
         path: '/api/1/bus/services.json'
@@ -32,14 +32,14 @@ var getBuslines = function () {
                     serviceIds.push(serviceId);
                 }
             }
-            deferred.resolve(serviceIds);
+            //deferred.resolve(serviceIds);
         });
     });
 
     httpReq.on('error', function (e) {
         console.log('ERROR: ' + e.message);
     });
-    return deferred.promise;
+    //return deferred.promise;
 };
 
 var getBusstops = function (lineId) {
@@ -75,7 +75,7 @@ var getBusstops = function (lineId) {
 };
 
 var getAllBusstops = function(lineIds) {
-    var deferred = q.defer();
+    //var deferred = q.defer();
     var received = 0;
     var busstops = [];
 
@@ -91,7 +91,7 @@ var getAllBusstops = function(lineIds) {
         //    }
         //});
     }
-    return deferred.promise;
+    //return deferred.promise;
 };
 
 exports.importBusstops = function (req, res) {

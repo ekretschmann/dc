@@ -17,10 +17,12 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr ng-click="editBusline(busline)" md-row md-select="busstop" md-select-id="{{busline.name}}" md-auto-select
+            <tr  md-row md-select="busstop" md-select-id="{{busline.name}}" md-auto-select
                 ng-repeat="busline in buslines">
+
                 <td md-cell>
-                    <div>{{busline.name}}</div>
+                    <div><a href="" data-ng-click="remove(busline)"><i class="glyphicon glyphicon-trash"></i></a>
+                         <a href="" ng-click="editBusline(busline)">{{busline.name}}</a></div>
                 </td>
                 <td md-cell>
                     <div ng-repeat="label in busline.labels track by $index">{{label}}</div>

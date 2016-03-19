@@ -143,5 +143,15 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
             stop.arrivals.splice(index, 1);
         };
 
+        $scope.remove = function(busline) {
+            if ( busline ) {
+                busline.$remove();
+                $scope.buslines = _.filter($scope.buslines, function(line) {
+                    console.log(line, busline);
+                    return line._id !== busline._id;
+                });
+            }
+        };
+
 
     }]);
