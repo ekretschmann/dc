@@ -66,7 +66,7 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
 
         $scope.addStopToLine = function(stop) {
             if (stop) {
-                $scope.busline.stops.push(stop.name);
+                $scope.busline.stops.push(stop.info.naptan);
                 $scope.busline.times.push(0);
                 $scope.searchText = '';
             }
@@ -74,14 +74,13 @@ angular.module('buslines').controller('BuslinesController', ['$scope', '$statePa
 
         $scope.create = function() {
 
-            console.log($scope.busline);
 
-            //$scope.busline.$save(function(response) {
-            //    $location.path('/buslines');
-            //
-            //}, function(errorResponse) {
-            //    $scope.error = errorResponse.data.message;
-            //});
+            $scope.busline.$save(function(response) {
+                $location.path('/buslines');
+
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
         };
 
         $scope.update = function() {

@@ -57,28 +57,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label">Lines</label>
+                <label class="control-label">NaPTAN</label>
 
-                <div ng-repeat="line in location.info">
-                    <div class="row">
-                        <div class="col-xs-3">{{line}}</div>
-                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
-                            <a href="" data-ng-click="removeLine(line)"><i
-                                    class="glyphicon glyphicon-minus-sign"></i></a>
-                        </div>
-                    </div>
-                </div>
                 <div class="controls">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <input type="text" data-ng-model="newLine" class="form-control" placeholder="add Line">
-                        </div>
-                        <div class="col-xs-1" style="text-align: left; margin-top: 0.5em">
-                            <a href="" data-ng-click="addLine()"><i class="glyphicon glyphicon-plus-sign"></i></a>
-                        </div>
-                    </div>
+                    <input type="text" data-ng-model="location.info.naptan" class="form-control" placeholder="NaPTAN" required>
                 </div>
             </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-default">
             </div>

@@ -15,7 +15,7 @@
             <th md-column>Labels</th>
             <th md-column md-numeric>Lat</th>
             <th md-column md-numeric>Lng</th>
-            <th md-column md-numeric>Lines</th>
+            <th md-column md-numeric>NaPTAN</th>
 
             </tr>
             </thead>
@@ -32,7 +32,7 @@
                 <td md-cell>{{busstop.lat}}</td>
                 <td md-cell>{{busstop.lng}}</td>
                 <td md-cell>
-                    <div ng-repeat="line in busstop.info track by $index">{{line}}</div>
+                    <div ng-repeat="info in busstop.info track by $index">{{info}}</div>
                 </td>
             </tr>
             </tbody>
